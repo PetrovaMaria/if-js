@@ -44,3 +44,20 @@ console.log(min1(3, 4));
 console.log(max1(3, 4));
 
 console.log('----------');
+
+const arr = [10, 2, 36, 15, 69, 100, 58, 78, 45, 60];
+
+for (let i = 0; i < arr.length; i++) {
+  let new_str = '';
+  const str = String(arr[i]);
+  for (let j = 0; j < str.length; j++) {
+    if (str[j] === '0') {
+      new_str = new_str + 'zero';
+    } else {
+      new_str = new_str + str[j];
+    }
+    arr[i] = new_str;
+  }
+}
+
+console.log(arr);
