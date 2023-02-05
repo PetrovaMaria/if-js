@@ -1,47 +1,63 @@
-let user = 'John Doe';
-console.log(user);
+const palindrome = function (word) {
+  for (let i = 0; i < word.length; ) {
+    if (word[i] === word[word.length - i - 1]) {
+      i++;
+      if (i === word.length) {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+};
 
-const student = 'Masha';
-console.log(student);
+console.log(palindrome('шалаш'));
 
-user = student;
-console.log(user);
+console.log('----------');
 
-let test = 1;
-test += 1;
-test += '1';
-console.log(test);
-test -= 1;
-console.log(test);
-test = Boolean(test);
-console.log(test);
+const min = function (a, b) {
+  if (a < b) {
+    return a;
+  }
+  return b;
+};
 
-const array = [2, 3, 5, 8];
-let result = 1;
+const max = function (a, b) {
+  if (a > b) {
+    return a;
+  }
+  return b;
+};
 
-// eslint-disable-next-line for-direction
-for (let i = 0; i < array.length; i++) {
-  result *= array[i];
-}
+console.log(min(1, 2));
+console.log(max(1, 2));
 
-console.log(result);
+const min1 = function (a, b) {
+  return a < b ? a : b;
+};
 
-console.log('------------------');
+const max1 = function (a, b) {
+  return a > b ? a : b;
+};
 
-const array2 = [2, 5, 8, 15, 0, 6, 20, 3];
+console.log(min1(3, 4));
+console.log(max1(3, 4));
 
-for (let i = 0; i < array.length; i++) {
-  if (array2[i] > 5 && array2[i] < 10) {
-    console.log(array2[i]);
+console.log('----------');
+
+const arr = [10, 2, 36, 15, 69, 100, 58, 78, 45, 60];
+
+for (let i = 0; i < arr.length; i++) {
+  let new_str = '';
+  const str = String(arr[i]);
+  for (let j = 0; j < str.length; j++) {
+    if (str[j] === '0') {
+      new_str = new_str + 'zero';
+    } else {
+      new_str = new_str + str[j];
+    }
+    arr[i] = new_str;
   }
 }
 
-console.log('------------------');
-
-const array3 = [2, 5, 8, 15, 0, 6, 20, 3];
-
-for (let i = 0; i < array.length; i++) {
-  if (array3[i] % 2 === 0) {
-    console.log(array3[i]);
-  }
-}
+console.log(arr);
