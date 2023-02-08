@@ -1,4 +1,4 @@
-function replacer (match, p1, p2, p3){
+function replacer(match, p1, p2, p3) {
   // eslint-disable-next-line no-debugger
   return [p3, p2, p1].join('.');
 }
@@ -6,7 +6,6 @@ function replacer (match, p1, p2, p3){
 const newString = '2020-11-26'.replace(/(\d*)-(\d*)-(\d*)/g, replacer);
 
 console.log(newString);
-
 
 const data = [
   {
@@ -51,9 +50,8 @@ const data = [
   },
 ];
 
-
-for(let i=0; i<data.length; i++){
-  if(data[i].country.includes("Germany")===true){
+for (let i = 0; i < data.length; i++) {
+  if (data[i].country.includes('Germany') === true) {
     console.log(`${data[i].country}, ${data[i].city}, ${data[i].hotel} `);
   }
 }
