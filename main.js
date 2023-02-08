@@ -1,63 +1,59 @@
-const palindrome = function (word) {
-  for (let i = 0; i < word.length; ) {
-    if (word[i] === word[word.length - i - 1]) {
-      i++;
-      if (i === word.length) {
-        return true;
-      }
-    } else {
-      return false;
-    }
-  }
-};
-
-console.log(palindrome('шалаш'));
-
-console.log('----------');
-
-const min = function (a, b) {
-  if (a < b) {
-    return a;
-  }
-  return b;
-};
-
-const max = function (a, b) {
-  if (a > b) {
-    return a;
-  }
-  return b;
-};
-
-console.log(min(1, 2));
-console.log(max(1, 2));
-
-const min1 = function (a, b) {
-  return a < b ? a : b;
-};
-
-const max1 = function (a, b) {
-  return a > b ? a : b;
-};
-
-console.log(min1(3, 4));
-console.log(max1(3, 4));
-
-console.log('----------');
-
-const arr = [10, 2, 36, 15, 69, 100, 58, 78, 45, 60];
-
-for (let i = 0; i < arr.length; i++) {
-  let new_str = '';
-  const str = String(arr[i]);
-  for (let j = 0; j < str.length; j++) {
-    if (str[j] === '0') {
-      new_str = new_str + 'zero';
-    } else {
-      new_str = new_str + str[j];
-    }
-    arr[i] = new_str;
-  }
+function replacer (match, p1, p2, p3){
+  // eslint-disable-next-line no-debugger
+  return [p3, p2, p1].join('.');
 }
 
-console.log(arr);
+const newString = '2020-11-26'.replace(/(\d*)-(\d*)-(\d*)/g, replacer);
+
+console.log(newString);
+
+
+const data = [
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  },
+  {
+    country: 'Spain',
+    city: 'Santa Cruz de Tenerife',
+    hotel: 'Apartment Sunshine',
+  },
+  {
+    country: 'Slowakia',
+    city: 'Vysokie Tatry',
+    hotel: 'Villa Kunerad',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hostel Friendship',
+  },
+  {
+    country: 'Indonesia',
+    city: 'Bali',
+    hotel: 'Ubud Bali Resort&SPA',
+  },
+  {
+    country: 'Netherlands',
+    city: 'Rotterdam',
+    hotel: 'King Kong Hostel',
+  },
+  {
+    country: 'Marocco',
+    city: 'Ourika',
+    hotel: 'Rokoko Hotel',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hotel Rehberge Berlin Mitte',
+  },
+];
+
+
+for(let i=0; i<data.length; i++){
+  if(data[i].country.includes("Germany")===true){
+    console.log(`${data[i].country}, ${data[i].city}, ${data[i].hotel} `);
+  }
+}
