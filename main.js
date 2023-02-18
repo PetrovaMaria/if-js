@@ -1,11 +1,11 @@
-function replacer(match, p1, p2, p3) {
-  // eslint-disable-next-line no-debugger
-  return [p3, p2, p1].join('.');
-}
 
-const newString = '2020-11-26'.replace(/(\d*)-(\d*)-(\d*)/g, replacer);
+const reverseDate = (date) => {
+  return date.replace(/(\d*)-(\d*)-(\d*)/g, (match, p1, p2, p3) => {
+    return [p3, p2, p1].join('.');
+  });
+};
 
-console.log(newString);
+console.log(reverseDate('2020-11-26'));
 
 const data = [
   {
@@ -50,8 +50,17 @@ const data = [
   },
 ];
 
-for (let i = 0; i < data.length; i++) {
-  if (data[i].country.includes('Germany') === true) {
-    console.log(`${data[i].country}, ${data[i].city}, ${data[i].hotel} `);
+const arr = [];
+let index = 0;
+
+const countryInclude = (country) => {
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].country.includes(country)) {
+      arr[index] = `${data[i].country}, ${data[i].city}, ${data[i].hotel} `;
+      index++;
+    }
   }
-}
+  return arr;
+};
+
+  console.log(countryInclude('Germany'));
