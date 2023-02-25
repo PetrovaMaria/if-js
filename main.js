@@ -1,4 +1,3 @@
-
 const reverseDate = (date) => {
   return date.replace(/(\d*)-(\d*)-(\d*)/g, (match, p1, p2, p3) => {
     return [p3, p2, p1].join('.');
@@ -50,10 +49,9 @@ const data = [
   },
 ];
 
-const arr = [];
-let index = 0;
-
 const countryInclude = (country) => {
+  const arr = [];
+  let index = 0;
   for (let i = 0; i < data.length; i++) {
     if (data[i].country.includes(country)) {
       arr[index] = `${data[i].country}, ${data[i].city}, ${data[i].hotel} `;
@@ -63,4 +61,4 @@ const countryInclude = (country) => {
   return arr;
 };
 
-  console.log(countryInclude('Germany'));
+console.log(countryInclude('Germany'));
