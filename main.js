@@ -1,5 +1,7 @@
 const palindrome = function (word) {
-  return word=== word.split('').reverse().join('') ? 'палиндром' : 'не палиндром';
+  return word === word.split('').reverse().join('')
+    ? 'палиндром'
+    : 'не палиндром';
 };
 
 console.log(palindrome('шалаш'));
@@ -218,8 +220,8 @@ const hotels = [
   },
 ];
 
-const hotel = hotels.reduce (function (newArr, element) {
-  if(!newArr[element.country]){
+const hotel = hotels.reduce(function (newArr, element) {
+  if (!newArr[element.country]) {
     newArr[element.country] = [];
   }
   newArr[element.country].push(element.city);
@@ -230,33 +232,32 @@ console.log(hotel);
 
 console.log('----------');
 
-const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek){
-    const arr = [[]];
-    arr[0].fill(0);
-    let row = 0;
-      for ( let i = 0; i < dayOfWeek; i++){
-        arr[0][i] = daysInMonth - dayOfWeek + 1 + i;
-      }
-    for(let i=1; i<=daysInMonth; i++){
-      if(dayOfWeek<daysInWeek){
-        arr[row][dayOfWeek] = i;
-        dayOfWeek++;
-      }
-      else{
-        arr.push([]);
-        row += 1;
-        dayOfWeek = 0;
-        arr[row][dayOfWeek] = i;
-        dayOfWeek++;
-      }
-    }
-
-    let dayOfNextMonth = 1;
-    while(dayOfWeek<daysInWeek){
-      arr[arr.length - 1][dayOfWeek] = dayOfNextMonth;
-      dayOfNextMonth++;
+const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
+  const arr = [[]];
+  arr[0].fill(0);
+  let row = 0;
+  for (let i = 0; i < dayOfWeek; i++) {
+    arr[0][i] = daysInMonth - dayOfWeek + 1 + i;
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (dayOfWeek < daysInWeek) {
+      arr[row][dayOfWeek] = i;
+      dayOfWeek++;
+    } else {
+      arr.push([]);
+      row += 1;
+      dayOfWeek = 0;
+      arr[row][dayOfWeek] = i;
       dayOfWeek++;
     }
+  }
+
+  let dayOfNextMonth = 1;
+  while (dayOfWeek < daysInWeek) {
+    arr[arr.length - 1][dayOfWeek] = dayOfNextMonth;
+    dayOfNextMonth++;
+    dayOfWeek++;
+  }
   return arr;
 };
 
