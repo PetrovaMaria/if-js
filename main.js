@@ -49,11 +49,14 @@ const data = [
   },
 ];
 
-data.forEach ( element => {
+const str = data.reduce(function (newArr, element) {
   if (element.country.includes('Germany')) {
-    console.log(`${element.country}, ${element.city}, ${element.hotel} `);
+    newArr.push(`${element.country}, ${element.city}, ${element.hotel} `);
   }
-});
+  return newArr;
+}, []);
+
+console.log(str);
 
 console.log('----------');
 
@@ -215,16 +218,15 @@ const hotels = [
   },
 ];
 
-const obj = {};
-
-hotels.forEach ( element => {
-  if(!obj[element.country]){
-    obj[element.country] = [];
+const hotel = hotels.reduce (function (newArr, element) {
+  if(!newArr[element.country]){
+    newArr[element.country] = [];
   }
-  obj[element.country].push(element.city);
+  newArr[element.country].push(element.city);
+  return newArr;
 });
 
-console.log(obj);
+console.log(hotel);
 
 console.log('----------');
 
