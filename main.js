@@ -1,63 +1,109 @@
-const palindrome = function (word) {
-  for (let i = 0; i < word.length; ) {
-    if (word[i] === word[word.length - i - 1]) {
-      i++;
-      if (i === word.length) {
-        return true;
-      }
-    } else {
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+const deepEqual = function (object1, object2) {
+  const property1 = Object.keys(object1);
+  const property2 = Object.keys(object2);
+
+  if (property1.length !== property2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < property1.length; i += 1) {
+    const prop = property1[i];
+    const bothAreObjects = typeof(object1[prop]) === 'object' && typeof(object2[prop]) === 'object';
+
+    if ((!bothAreObjects && (object1[prop] !== object2[prop]))
+      || (bothAreObjects && !deepEqual(object1[prop], object2[prop]))) {
       return false;
     }
   }
+
+  return true;
 };
 
-console.log(palindrome('шалаш'));
+console.log(deepEqual(obj1, obj2)); // true
+console.log(deepEqual(obj1, obj3)); // true
 
 console.log('----------');
 
-const min = function (a, b) {
-  if (a < b) {
-    return a;
+const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
+  let obj = {};
+  const arr = [[]];
+  arr[0].fill(0);
+  let row = 0;
+  for (let i = 0; i < dayOfWeek; i++) {
+      obj.dayOfMonth = daysInMonth - dayOfWeek + 1 + i;
+      obj.notCurrentMonth = false;
+      obj.selectedDay = false;
+      arr[0][i] = obj;
+      obj = {};
   }
-  return b;
-};
-
-const max = function (a, b) {
-  if (a > b) {
-    return a;
-  }
-  return b;
-};
-
-console.log(min(1, 2));
-console.log(max(1, 2));
-
-const min1 = function (a, b) {
-  return a < b ? a : b;
-};
-
-const max1 = function (a, b) {
-  return a > b ? a : b;
-};
-
-console.log(min1(3, 4));
-console.log(max1(3, 4));
-
-console.log('----------');
-
-const arr = [10, 2, 36, 15, 69, 100, 58, 78, 45, 60];
-
-for (let i = 0; i < arr.length; i++) {
-  let new_str = '';
-  const str = String(arr[i]);
-  for (let j = 0; j < str.length; j++) {
-    if (str[j] === '0') {
-      new_str = new_str + 'zero';
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (dayOfWeek < daysInWeek) {
+      obj.dayOfMonth = i;
+      obj.notCurrentMonth = true;
+      obj.selectedDay = false;
+      arr[row][dayOfWeek] = obj;
+      obj = {};
+      dayOfWeek++;
     } else {
-      new_str = new_str + str[j];
+      arr.push([]);
+      row += 1;
+      dayOfWeek = 0;
+      obj.dayOfMonth = i;
+      obj.notCurrentMonth = true;
+      obj.selectedDay = false;
+      arr[row][dayOfWeek] = obj;
+      obj = {};
+      dayOfWeek++;
     }
-    arr[i] = new_str;
   }
-}
 
-console.log(arr);
+  let dayOfNextMonth = 1;
+  while (dayOfWeek < daysInWeek) {
+    obj.dayOfMonth = dayOfNextMonth;
+    obj.notCurrentMonth = false;
+    obj.selectedDay = false;
+    arr[arr.length - 1][dayOfWeek] = obj;
+    obj = {};
+    dayOfNextMonth++;
+    dayOfWeek++;
+  }
+  return arr;
+};
+
+const daysInMonth = 30;
+const daysInWeek = 7;
+const dayOfWeek = 4;
+const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+
+console.log(calendarMonth);
