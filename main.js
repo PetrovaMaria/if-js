@@ -1,64 +1,73 @@
-const reverseDate = (date) => {
-  return date.replace(/(\d*)-(\d*)-(\d*)/g, (match, p1, p2, p3) => {
-    return [p3, p2, p1].join('.');
-  });
-};
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
 
-console.log(reverseDate('2020-11-26'));
+class Student extends User {
+  constructor(firstName, lastName, admissionYear, courseName) {
+    super(firstName, lastName);
+    this.admissionYear = admissionYear;
+    this.courseName = courseName;
+  }
+  get course() {
+    const date = new Date();
+    return date.getFullYear() - this.admissionYear;
+  }
+}
 
-const data = [
+const studentsData = [
   {
-    country: 'Russia',
-    city: 'Saint Petersburg',
-    hotel: 'Hotel Leopold',
+    firstName: 'Василий',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Java',
   },
   {
-    country: 'Spain',
-    city: 'Santa Cruz de Tenerife',
-    hotel: 'Apartment Sunshine',
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    admissionYear: 2018,
+    courseName: 'JavaScript',
   },
   {
-    country: 'Slowakia',
-    city: 'Vysokie Tatry',
-    hotel: 'Villa Kunerad',
+    firstName: 'Александр',
+    lastName: 'Федоров',
+    admissionYear: 2017,
+    courseName: 'Python',
   },
   {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hostel Friendship',
-  },
-  {
-    country: 'Indonesia',
-    city: 'Bali',
-    hotel: 'Ubud Bali Resort&SPA',
-  },
-  {
-    country: 'Netherlands',
-    city: 'Rotterdam',
-    hotel: 'King Kong Hostel',
-  },
-  {
-    country: 'Marocco',
-    city: 'Ourika',
-    hotel: 'Rokoko Hotel',
-  },
-  {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hotel Rehberge Berlin Mitte',
+    firstName: 'Николай',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Android',
   },
 ];
 
-const countryInclude = (country) => {
-  const arr = [];
-  let index = 0;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].country.includes(country)) {
-      arr[index] = `${data[i].country}, ${data[i].city}, ${data[i].hotel} `;
-      index++;
-    }
+class Students {
+  constructor(studentsData) {
+    this.studentsData = studentsData;
   }
-  return arr;
-};
 
-console.log(countryInclude('Germany'));
+  getInfo() {
+    return this.studentsData.map(
+      (element) =>
+        ` ${new User(element.firstName, element.lastName).fullName} - ${
+          element.courseName
+        }, ${
+          new Student(
+            element.firstName,
+            element.lastName,
+            element.admissionYear,
+            element.courseName,
+          ).course
+        } курс`,
+    );
+  }
+}
+
+const students = new Students(studentsData);
+console.log(students.getInfo());
