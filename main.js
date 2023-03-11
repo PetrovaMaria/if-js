@@ -1,7 +1,5 @@
 const palindrome = function (word) {
-  return word === word.split('').reverse().join('')
-    ? 'палиндром'
-    : 'не палиндром';
+  return word === word.split('').reverse().join('');
 };
 
 console.log(palindrome('шалаш'));
