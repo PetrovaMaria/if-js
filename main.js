@@ -39,10 +39,13 @@ const deepEqual = function (object1, object2) {
 
   for (let i = 0; i < property1.length; i += 1) {
     const prop = property1[i];
-    const bothAreObjects = typeof(object1[prop]) === 'object' && typeof(object2[prop]) === 'object';
+    const bothAreObjects =
+      typeof object1[prop] === 'object' && typeof object2[prop] === 'object';
 
-    if ((!bothAreObjects && (object1[prop] !== object2[prop]))
-      || (bothAreObjects && !deepEqual(object1[prop], object2[prop]))) {
+    if (
+      (!bothAreObjects && object1[prop] !== object2[prop]) ||
+      (bothAreObjects && !deepEqual(object1[prop], object2[prop]))
+    ) {
       return false;
     }
   }
@@ -61,17 +64,21 @@ const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
   arr[0].fill(0);
   let row = 0;
   for (let i = 0; i < dayOfWeek; i++) {
-      obj.dayOfMonth = daysInMonth - dayOfWeek + 1 + i;
-      obj.notCurrentMonth = false;
-      obj.selectedDay = false;
-      arr[0][i] = obj;
-      obj = {};
+    obj = {
+      dayOfMonth: daysInMonth - dayOfWeek + 1 + i,
+      notCurrentMonth: false,
+      selectedDay: false,
+    };
+    arr[0][i] = obj;
+    obj = {};
   }
   for (let i = 1; i <= daysInMonth; i++) {
     if (dayOfWeek < daysInWeek) {
-      obj.dayOfMonth = i;
-      obj.notCurrentMonth = true;
-      obj.selectedDay = false;
+      obj = {
+        dayOfMonth: i,
+        notCurrentMonth: true,
+        selectedDay: false,
+      };
       arr[row][dayOfWeek] = obj;
       obj = {};
       dayOfWeek++;
@@ -79,9 +86,11 @@ const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
       arr.push([]);
       row += 1;
       dayOfWeek = 0;
-      obj.dayOfMonth = i;
-      obj.notCurrentMonth = true;
-      obj.selectedDay = false;
+      obj = {
+        dayOfMonth: i,
+        notCurrentMonth: true,
+        selectedDay: false,
+      };
       arr[row][dayOfWeek] = obj;
       obj = {};
       dayOfWeek++;
@@ -90,9 +99,11 @@ const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
 
   let dayOfNextMonth = 1;
   while (dayOfWeek < daysInWeek) {
-    obj.dayOfMonth = dayOfNextMonth;
-    obj.notCurrentMonth = false;
-    obj.selectedDay = false;
+    obj = {
+      dayOfMonth: dayOfNextMonth,
+      notCurrentMonth: false,
+      selectedDay: false,
+    };
     arr[arr.length - 1][dayOfWeek] = obj;
     obj = {};
     dayOfNextMonth++;
