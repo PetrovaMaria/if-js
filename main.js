@@ -59,57 +59,57 @@ console.log(deepEqual(obj1, obj3)); // true
 console.log('----------');
 
 const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
-  let obj = {};
-  const arr = [[]];
-  arr[0].fill(0);
+  let elementOfArr = {};
+  const calendar = [[]];
+  calendar[0].fill(0);
   let row = 0;
   for (let i = 0; i < dayOfWeek; i++) {
-    obj = {
+    elementOfArr = {
       dayOfMonth: daysInMonth - dayOfWeek + 1 + i,
       notCurrentMonth: false,
       selectedDay: false,
     };
-    arr[0][i] = obj;
-    obj = {};
+    calendar[0][i] = elementOfArr;
+    elementOfArr = {};
   }
   for (let i = 1; i <= daysInMonth; i++) {
     if (dayOfWeek < daysInWeek) {
-      obj = {
+      elementOfArr = {
         dayOfMonth: i,
         notCurrentMonth: true,
         selectedDay: false,
       };
-      arr[row][dayOfWeek] = obj;
-      obj = {};
+      calendar[row][dayOfWeek] = elementOfArr;
+      elementOfArr = {};
       dayOfWeek++;
     } else {
-      arr.push([]);
+      calendar.push([]);
       row += 1;
       dayOfWeek = 0;
-      obj = {
+      elementOfArr = {
         dayOfMonth: i,
         notCurrentMonth: true,
         selectedDay: false,
       };
-      arr[row][dayOfWeek] = obj;
-      obj = {};
+      calendar[row][dayOfWeek] = elementOfArr;
+      elementOfArr = {};
       dayOfWeek++;
     }
   }
 
   let dayOfNextMonth = 1;
   while (dayOfWeek < daysInWeek) {
-    obj = {
+    elementOfArr = {
       dayOfMonth: dayOfNextMonth,
       notCurrentMonth: false,
       selectedDay: false,
     };
-    arr[arr.length - 1][dayOfWeek] = obj;
-    obj = {};
+    calendar[calendar.length - 1][dayOfWeek] = elementOfArr;
+    elementOfArr = {};
     dayOfNextMonth++;
     dayOfWeek++;
   }
-  return arr;
+  return calendar;
 };
 
 const daysInMonth = 30;
