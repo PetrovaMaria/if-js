@@ -14,7 +14,7 @@ class Student extends User {
     this.admissionYear = admissionYear;
     this.courseName = courseName;
   }
-  get course() {
+ get course() {
     const date = new Date();
     return date.getFullYear() - this.admissionYear;
   }
@@ -53,7 +53,8 @@ class Students {
   }
 
   getInfo() {
-    return this.studentsData.map(
+    studentsData.sort((a,b) => a.admissionYear < b.admissionYear ? 1 : -1);
+    const arr =  this.studentsData.map(
       (element) =>
         ` ${new User(element.firstName, element.lastName).fullName} - ${
           element.courseName
@@ -66,6 +67,7 @@ class Students {
           ).course
         } курс`,
     );
+    return arr;
   }
 }
 
