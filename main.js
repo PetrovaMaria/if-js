@@ -50,8 +50,12 @@ const data = [
 ];
 
 const searchStr = function (search) {
- return data.reduce(function (newArr, element) {
-    if (element.country.includes(search) || element.city.includes(search) || element.hotel.includes(search)) {
+  return data.reduce(function (newArr, element) {
+    if (
+      element.country.includes(search) ||
+      element.city.includes(search) ||
+      element.hotel.includes(search)
+    ) {
       newArr.push(`${element.country}, ${element.city}, ${element.hotel} `);
     }
     return newArr;
