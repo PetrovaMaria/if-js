@@ -1,8 +1,12 @@
 export const sum = function (a) {
   return function (b) {
-    return a + b;
+    if (typeof a === 'number' && typeof b === 'number') {
+      return a + b;
+    }
+    return false;
   };
 };
+
 
 console.log('-----------------');
 
