@@ -1,64 +1,52 @@
-const reverseDate = (date) => {
-  return date.replace(/(\d*)-(\d*)-(\d*)/g, (match, p1, p2, p3) => {
-    return [p3, p2, p1].join('.');
-  });
-};
+const text1 = document.getElementById("text1");
+const text2 = document.getElementById("text2");
+const text3 = document.getElementById("text3");
 
-console.log(reverseDate('2020-11-26'));
-
-const data = [
-  {
-    country: 'Russia',
-    city: 'Saint Petersburg',
-    hotel: 'Hotel Leopold',
+const colors = {
+  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+  [Symbol.iterator]() {
+    return this;
   },
-  {
-    country: 'Spain',
-    city: 'Santa Cruz de Tenerife',
-    hotel: 'Apartment Sunshine',
-  },
-  {
-    country: 'Slowakia',
-    city: 'Vysokie Tatry',
-    hotel: 'Villa Kunerad',
-  },
-  {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hostel Friendship',
-  },
-  {
-    country: 'Indonesia',
-    city: 'Bali',
-    hotel: 'Ubud Bali Resort&SPA',
-  },
-  {
-    country: 'Netherlands',
-    city: 'Rotterdam',
-    hotel: 'King Kong Hostel',
-  },
-  {
-    country: 'Marocco',
-    city: 'Ourika',
-    hotel: 'Rokoko Hotel',
-  },
-  {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hotel Rehberge Berlin Mitte',
-  },
-];
-
-const countryInclude = (country) => {
-  const arr = [];
-  let index = 0;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].country.includes(country)) {
-      arr[index] = `${data[i].country}, ${data[i].city}, ${data[i].hotel} `;
-      index++;
+  next(id) {
+    if (this.id === undefined) {
+      this.id = id;
     }
-  }
-  return arr;
+    while (this.data.length !== -1 ) {
+      if (this.id <= this.data.length) {
+        return {
+          done: false,
+          value: this.data[this.id++],
+        };
+      }
+      return {
+        id: 0,
+        value: this.data[this.id],
+      };
+    }
+  },
 };
 
-console.log(countryInclude('Germany'));
+console.log(colors.next(3).value);
+
+const firstIndex = 1;
+const secondIndex = 1;
+const thirdIndex = 1;
+
+
+text1.addEventListener('click', (event) => {
+  event.target.style.color = colors.next(firstIndex).value;
+});
+
+
+
+text2.addEventListener('click', (event) => {
+  event.target.style.color = colors.next(secondIndex).value;
+});
+
+text3.addEventListener('click', (event) => {
+  event.target.style.color = colors.next(thirdIndex).value;
+});
+
+
+
+
