@@ -50,7 +50,7 @@ const data = [
 ];
 
 const searchStr = function (search) {
-   const arr = data.filter(function (element) {
+  const arr = data.filter(function (element) {
     if (
       element.country.includes(search) ||
       element.city.includes(search) ||
@@ -226,7 +226,7 @@ const hotels = [
 ];
 
 const arrHotel = function () {
-    hotels.filter(function (newArr, element) {
+  hotels.filter(function (newArr, element) {
     if (!newArr[element.country]) {
       newArr[element.country] = [];
     }
