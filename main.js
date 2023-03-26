@@ -50,19 +50,20 @@ const data = [
 ];
 
 const searchStr = function (search) {
-  return data.reduce(function (newArr, element) {
+   const arr = data.filter(function (element) {
     if (
       element.country.includes(search) ||
       element.city.includes(search) ||
       element.hotel.includes(search)
-    ) {
-      newArr.push(`${element.country}, ${element.city}, ${element.hotel} `);
-    }
-    return newArr;
-  }, []);
+    )
+      return element;
+  });
+  return arr.map(function (newArr) {
+    return `${newArr.country}, ${newArr.city}, ${newArr.hotel} `;
+  });
 };
 
-console.log(searchStr('Ourika'));
+console.log(searchStr('Germany'));
 
 console.log('----------');
 
@@ -225,7 +226,7 @@ const hotels = [
 ];
 
 const arrHotel = function () {
-  return hotels.reduce(function (newArr, element) {
+    hotels.filter(function (newArr, element) {
     if (!newArr[element.country]) {
       newArr[element.country] = [];
     }
