@@ -1,276 +1,113 @@
-const palindrome = function (word) {
-  return word === word.split('').reverse().join('');
-};
+const text1 = document.getElementById('text1');
+const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
 
-console.log(palindrome('шалаш'));
-
-console.log('----------');
-
-const data = [
-  {
-    country: 'Russia',
-    city: 'Saint Petersburg',
-    hotel: 'Hotel Leopold',
+const colors = {
+  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+  [Symbol.iterator]() {
+    return this;
   },
-  {
-    country: 'Spain',
-    city: 'Santa Cruz de Tenerife',
-    hotel: 'Apartment Sunshine',
-  },
-  {
-    country: 'Slowakia',
-    city: 'Vysokie Tatry',
-    hotel: 'Villa Kunerad',
-  },
-  {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hostel Friendship',
-  },
-  {
-    country: 'Indonesia',
-    city: 'Bali',
-    hotel: 'Ubud Bali Resort&SPA',
-  },
-  {
-    country: 'Netherlands',
-    city: 'Rotterdam',
-    hotel: 'King Kong Hostel',
-  },
-  {
-    country: 'Marocco',
-    city: 'Ourika',
-    hotel: 'Rokoko Hotel',
-  },
-  {
-    country: 'Germany',
-    city: 'Berlin',
-    hotel: 'Hotel Rehberge Berlin Mitte',
-  },
-];
-
-const searchStr = function (search) {
-  const arr = data.filter(function (element) {
-    if (
-      element.country.includes(search) ||
-      element.city.includes(search) ||
-      element.hotel.includes(search)
-    )
-      return element;
-  });
-  return arr.map(function (newArr) {
-    return `${newArr.country}, ${newArr.city}, ${newArr.hotel} `;
-  });
-};
-
-console.log(searchStr('Germany'));
-
-console.log('----------');
-
-const hotels = [
-  {
-    name: 'Hotel Leopold',
-    city: 'Saint Petersburg',
-    country: 'Russia',
-  },
-  {
-    name: 'Apartment Sunshine',
-    city: 'Santa Cruz de Tenerife',
-    country: 'Spain',
-  },
-  {
-    name: 'Villa Kunerad',
-    city: 'Vysokie Tatry',
-    country: 'Slowakia',
-  },
-  {
-    name: 'Hostel Friendship',
-    city: 'Berlin',
-    country: 'Germany',
-  },
-  {
-    name: 'Radisson Blu Hotel',
-    city: 'Kyiv',
-    country: 'Ukraine',
-  },
-  {
-    name: 'Paradise Hotel',
-    city: 'Guadalupe',
-    country: 'Mexico',
-  },
-  {
-    name: 'Hotel Grindewald',
-    city: 'Interlaken',
-    country: 'Switzerland',
-  },
-  {
-    name: 'The Andaman Resort',
-    city: 'Port Dickson',
-    country: 'Malaysia',
-  },
-  {
-    name: 'Virgin Hotel',
-    city: 'Chicago',
-    country: 'USA',
-  },
-  {
-    name: 'Grand Beach Resort',
-    city: 'Dubai',
-    country: 'United Arab Emirates',
-  },
-  {
-    name: 'Shilla Stay',
-    city: 'Seoul',
-    country: 'South Korea',
-  },
-  {
-    name: 'San Firenze Suites',
-    city: 'Florence',
-    country: 'Italy',
-  },
-  {
-    name: 'The Andaman Resort',
-    city: 'Port Dickson',
-    country: 'Malaysia',
-  },
-  {
-    name: 'Black Penny Villas',
-    city: 'BTDC, Nuca Dua',
-    country: 'Indonesia',
-  },
-  {
-    name: 'Koko Hotel',
-    city: 'Tokyo',
-    country: 'Japan',
-  },
-  {
-    name: 'Ramada Plaza',
-    city: 'Istanbul',
-    country: 'Turkey',
-  },
-  {
-    name: 'Waikiki Resort Hotel',
-    city: 'Hawaii',
-    country: 'USA',
-  },
-  {
-    name: 'Puro Hotel',
-    city: 'Krakow',
-    country: 'Poland',
-  },
-  {
-    name: 'Asma Suites',
-    city: 'Santorini',
-    country: 'Greece',
-  },
-  {
-    name: 'Cityden Apartments',
-    city: 'Amsterdam',
-    country: 'Netherlands',
-  },
-  {
-    name: 'Mandarin Oriental',
-    city: 'Miami',
-    country: 'USA',
-  },
-  {
-    name: 'Concept Terrace Hotel',
-    city: 'Rome',
-    country: 'Italy',
-  },
-  {
-    name: 'Ponta Mar Hotel',
-    city: 'Fortaleza',
-    country: 'Brazil',
-  },
-  {
-    name: 'Four Seasons Hotel',
-    city: 'Sydney',
-    country: 'Australia',
-  },
-  {
-    name: 'Le Meridien',
-    city: 'Nice',
-    country: 'France',
-  },
-  {
-    name: 'Apart Neptun',
-    city: 'Gdansk',
-    country: 'Poland',
-  },
-  {
-    name: 'Lux Isla',
-    city: 'Ibiza',
-    country: 'Spain',
-  },
-  {
-    name: 'Nox Hostel',
-    city: 'London',
-    country: 'UK',
-  },
-  {
-    name: 'Leonardo Vienna',
-    city: 'Vienna',
-    country: 'Austria',
-  },
-  {
-    name: 'Adagio Aparthotel',
-    city: 'Edinburgh',
-    country: 'UK',
-  },
-  {
-    name: 'Steigenberger Hotel',
-    city: 'Hamburg',
-    country: 'Germany',
-  },
-];
-
-const arrHotel = function () {
-  hotels.filter(function (newArr, element) {
-    if (!newArr[element.country]) {
-      newArr[element.country] = [];
+  next(id) {
+    if (this[id] === undefined || this[id] === this.data.length - 1) {
+      this[id] = 0;
+    } else {
+      this[id]++;
     }
-    newArr[element.country].push(element.city);
-    return newArr;
-  });
+    return {
+      value: this.data[this[id]],
+      done: false,
+    };
+  },
 };
 
-console.log(arrHotel());
+text1.addEventListener('click', (event) => {
+  event.target.style.color = colors.next('id1').value;
+});
 
-console.log('----------');
+text2.addEventListener('click', (event) => {
+  event.target.style.color = colors.next('id2').value;
+});
 
-const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
-  const arr = [[]];
-  arr[0].fill(0);
+text3.addEventListener('click', (event) => {
+  event.target.style.color = colors.next('id3').value;
+});
+
+console.log('__________');
+
+const getCalendar = function (daysInMonth, daysInWeek, dayOfWeek) {
+  let elementOfArr = {};
+  const calendar = [[]];
+  calendar[0].fill(0);
   let row = 0;
   for (let i = 0; i < dayOfWeek; i++) {
-    arr[0][i] = daysInMonth - dayOfWeek + 1 + i;
+    elementOfArr = {
+      dayOfMonth: daysInMonth - dayOfWeek + 1 + i,
+      notCurrentMonth: false,
+      selectedDay: false,
+    };
+    calendar[0][i] = elementOfArr;
+    elementOfArr = {};
   }
   for (let i = 1; i <= daysInMonth; i++) {
     if (dayOfWeek < daysInWeek) {
-      arr[row][dayOfWeek] = i;
+      elementOfArr = {
+        dayOfMonth: i,
+        notCurrentMonth: true,
+        selectedDay: false,
+      };
+      calendar[row][dayOfWeek] = elementOfArr;
+      elementOfArr = {};
       dayOfWeek++;
     } else {
-      arr.push([]);
+      calendar.push([]);
       row += 1;
       dayOfWeek = 0;
-      arr[row][dayOfWeek] = i;
+      elementOfArr = {
+        dayOfMonth: i,
+        notCurrentMonth: true,
+        selectedDay: false,
+      };
+      calendar[row][dayOfWeek] = elementOfArr;
+      elementOfArr = {};
       dayOfWeek++;
     }
   }
 
   let dayOfNextMonth = 1;
   while (dayOfWeek < daysInWeek) {
-    arr[arr.length - 1][dayOfWeek] = dayOfNextMonth;
+    elementOfArr = {
+      dayOfMonth: dayOfNextMonth,
+      notCurrentMonth: false,
+      selectedDay: false,
+    };
+    calendar[calendar.length - 1][dayOfWeek] = elementOfArr;
+    elementOfArr = {};
     dayOfNextMonth++;
     dayOfWeek++;
   }
-  return arr;
+  return calendar;
 };
 
-const daysInMonth = 30;
+const today = new Date();
+const FirstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+function howMuchDays(year, month) {
+  const date1 = new Date(year, month, 1);
+  const date2 = new Date(year, month + 1, 1);
+  return Math.round((date2 - date1) / 1000 / 3600 / 24);
+}
+
+const daysInMonth = howMuchDays(today.getFullYear(), today.getMonth());
 const daysInWeek = 7;
-const dayOfWeek = 4;
-const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+const dayOfWeek = FirstDayOfMonth.getDay();
+const calendarMonth = getCalendar(daysInMonth, daysInWeek, dayOfWeek);
+
+for (let i = 0; i < calendarMonth.length; i++) {
+  for (let j = 0; j < calendarMonth[i].length; j++) {
+    calendarMonth[i][j].dayOfMonth === today.getDate()
+      ? (calendarMonth[i][j].currentDay = true)
+      : (calendarMonth[i][j].currentDay = false);
+  }
+}
 
 console.log(calendarMonth);
