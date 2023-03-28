@@ -1,75 +1,276 @@
-class User {
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-  get fullName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
-}
+const palindrome = function (word) {
+  return word === word.split('').reverse().join('');
+};
 
-class Student extends User {
-  constructor(firstName, lastName, admissionYear, courseName) {
-    super(firstName, lastName);
-    this.admissionYear = admissionYear;
-    this.courseName = courseName;
-  }
- get course() {
-    const date = new Date();
-    return date.getFullYear() - this.admissionYear;
-  }
-}
+console.log(palindrome('шалаш'));
 
-const studentsData = [
+console.log('----------');
+
+const data = [
   {
-    firstName: 'Василий',
-    lastName: 'Петров',
-    admissionYear: 2019,
-    courseName: 'Java',
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
   },
   {
-    firstName: 'Иван',
-    lastName: 'Иванов',
-    admissionYear: 2018,
-    courseName: 'JavaScript',
+    country: 'Spain',
+    city: 'Santa Cruz de Tenerife',
+    hotel: 'Apartment Sunshine',
   },
   {
-    firstName: 'Александр',
-    lastName: 'Федоров',
-    admissionYear: 2017,
-    courseName: 'Python',
+    country: 'Slowakia',
+    city: 'Vysokie Tatry',
+    hotel: 'Villa Kunerad',
   },
   {
-    firstName: 'Николай',
-    lastName: 'Петров',
-    admissionYear: 2019,
-    courseName: 'Android',
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hostel Friendship',
+  },
+  {
+    country: 'Indonesia',
+    city: 'Bali',
+    hotel: 'Ubud Bali Resort&SPA',
+  },
+  {
+    country: 'Netherlands',
+    city: 'Rotterdam',
+    hotel: 'King Kong Hostel',
+  },
+  {
+    country: 'Marocco',
+    city: 'Ourika',
+    hotel: 'Rokoko Hotel',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hotel Rehberge Berlin Mitte',
   },
 ];
 
-class Students {
-  constructor(studentsData) {
-    this.studentsData = studentsData;
+const searchStr = function (search) {
+  const arr = data.filter(function (element) {
+    if (
+      element.country.includes(search) ||
+      element.city.includes(search) ||
+      element.hotel.includes(search)
+    )
+      return element;
+  });
+  return arr.map(function (newArr) {
+    return `${newArr.country}, ${newArr.city}, ${newArr.hotel} `;
+  });
+};
+
+console.log(searchStr('Germany'));
+
+console.log('----------');
+
+const hotels = [
+  {
+    name: 'Hotel Leopold',
+    city: 'Saint Petersburg',
+    country: 'Russia',
+  },
+  {
+    name: 'Apartment Sunshine',
+    city: 'Santa Cruz de Tenerife',
+    country: 'Spain',
+  },
+  {
+    name: 'Villa Kunerad',
+    city: 'Vysokie Tatry',
+    country: 'Slowakia',
+  },
+  {
+    name: 'Hostel Friendship',
+    city: 'Berlin',
+    country: 'Germany',
+  },
+  {
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
+  },
+  {
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
+  },
+  {
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Virgin Hotel',
+    city: 'Chicago',
+    country: 'USA',
+  },
+  {
+    name: 'Grand Beach Resort',
+    city: 'Dubai',
+    country: 'United Arab Emirates',
+  },
+  {
+    name: 'Shilla Stay',
+    city: 'Seoul',
+    country: 'South Korea',
+  },
+  {
+    name: 'San Firenze Suites',
+    city: 'Florence',
+    country: 'Italy',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Black Penny Villas',
+    city: 'BTDC, Nuca Dua',
+    country: 'Indonesia',
+  },
+  {
+    name: 'Koko Hotel',
+    city: 'Tokyo',
+    country: 'Japan',
+  },
+  {
+    name: 'Ramada Plaza',
+    city: 'Istanbul',
+    country: 'Turkey',
+  },
+  {
+    name: 'Waikiki Resort Hotel',
+    city: 'Hawaii',
+    country: 'USA',
+  },
+  {
+    name: 'Puro Hotel',
+    city: 'Krakow',
+    country: 'Poland',
+  },
+  {
+    name: 'Asma Suites',
+    city: 'Santorini',
+    country: 'Greece',
+  },
+  {
+    name: 'Cityden Apartments',
+    city: 'Amsterdam',
+    country: 'Netherlands',
+  },
+  {
+    name: 'Mandarin Oriental',
+    city: 'Miami',
+    country: 'USA',
+  },
+  {
+    name: 'Concept Terrace Hotel',
+    city: 'Rome',
+    country: 'Italy',
+  },
+  {
+    name: 'Ponta Mar Hotel',
+    city: 'Fortaleza',
+    country: 'Brazil',
+  },
+  {
+    name: 'Four Seasons Hotel',
+    city: 'Sydney',
+    country: 'Australia',
+  },
+  {
+    name: 'Le Meridien',
+    city: 'Nice',
+    country: 'France',
+  },
+  {
+    name: 'Apart Neptun',
+    city: 'Gdansk',
+    country: 'Poland',
+  },
+  {
+    name: 'Lux Isla',
+    city: 'Ibiza',
+    country: 'Spain',
+  },
+  {
+    name: 'Nox Hostel',
+    city: 'London',
+    country: 'UK',
+  },
+  {
+    name: 'Leonardo Vienna',
+    city: 'Vienna',
+    country: 'Austria',
+  },
+  {
+    name: 'Adagio Aparthotel',
+    city: 'Edinburgh',
+    country: 'UK',
+  },
+  {
+    name: 'Steigenberger Hotel',
+    city: 'Hamburg',
+    country: 'Germany',
+  },
+];
+
+const arrHotel = function () {
+  hotels.filter(function (newArr, element) {
+    if (!newArr[element.country]) {
+      newArr[element.country] = [];
+    }
+    newArr[element.country].push(element.city);
+    return newArr;
+  });
+};
+
+console.log(arrHotel());
+
+console.log('----------');
+
+const getCalendarMonth = function (daysInMonth, daysInWeek, dayOfWeek) {
+  const arr = [[]];
+  arr[0].fill(0);
+  let row = 0;
+  for (let i = 0; i < dayOfWeek; i++) {
+    arr[0][i] = daysInMonth - dayOfWeek + 1 + i;
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (dayOfWeek < daysInWeek) {
+      arr[row][dayOfWeek] = i;
+      dayOfWeek++;
+    } else {
+      arr.push([]);
+      row += 1;
+      dayOfWeek = 0;
+      arr[row][dayOfWeek] = i;
+      dayOfWeek++;
+    }
   }
 
-  getInfo() {
-    studentsData.sort((a,b) => a.admissionYear < b.admissionYear ? 1 : -1);
-    const arr =  this.studentsData.map(
-      (element) =>
-        ` ${new User(element.firstName, element.lastName).fullName} - ${
-          element.courseName
-        }, ${
-          new Student(
-            element.firstName,
-            element.lastName,
-            element.admissionYear,
-            element.courseName,
-          ).course
-        } курс`,
-    );
-    return arr;
+  let dayOfNextMonth = 1;
+  while (dayOfWeek < daysInWeek) {
+    arr[arr.length - 1][dayOfWeek] = dayOfNextMonth;
+    dayOfNextMonth++;
+    dayOfWeek++;
   }
-}
+  return arr;
+};
 
-const students = new Students(studentsData);
-console.log(students.getInfo());
+const daysInMonth = 30;
+const daysInWeek = 7;
+const dayOfWeek = 4;
+const calendarMonth = getCalendarMonth(daysInMonth, daysInWeek, dayOfWeek);
+
+console.log(calendarMonth);
