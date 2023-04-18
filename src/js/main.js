@@ -67,7 +67,6 @@ const data = [
 
 const blocks = document.getElementById('blocks');
 
-
 data.map((element, index) => {
   if (index < blocks.children.length) {
     blocks.children[index].children[0].setAttribute('src', element.imageUrl);
@@ -76,4 +75,3 @@ data.map((element, index) => {
       element.city + ', ' + element.country;
   }
 });
-
