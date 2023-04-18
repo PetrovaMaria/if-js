@@ -65,22 +65,15 @@ const data = [
   },
 ];
 
-const firstIconOfHotel = document.getElementById('firstHotel');
-const secondIconOfHotel = document.getElementById('secondHotel');
-const thirdIconOfHotel = document.getElementById('thirdHotel');
-const forthIconOfHotel = document.getElementById('forthHotel');
+const blocks = document.getElementById('blocks');
 
-firstIconOfHotel.children[0].setAttribute('src', data[0].imageUrl);
-secondIconOfHotel.children[0].setAttribute('src', data[1].imageUrl);
-thirdIconOfHotel.children[0].setAttribute('src', data[2].imageUrl);
-forthIconOfHotel.children[0].setAttribute('src', data[3].imageUrl);
 
-firstIconOfHotel.children[1].innerHTML = data[0].name;
-secondIconOfHotel.children[1].innerHTML = data[1].name;
-thirdIconOfHotel.children[1].innerHTML = data[2].name;
-forthIconOfHotel.children[1].innerHTML = data[3].name;
+data.map((element, index) => {
+  if (index < blocks.children.length) {
+    blocks.children[index].children[0].setAttribute('src', element.imageUrl);
+    blocks.children[index].children[1].innerHTML = element.name;
+    blocks.children[index].children[2].innerHTML =
+      element.city + ', ' + element.country;
+  }
+});
 
-firstIconOfHotel.children[2].innerHTML = data[0].city + ', ' + data[0].country;
-secondIconOfHotel.children[2].innerHTML = data[1].city + ', ' + data[2].country;
-thirdIconOfHotel.children[2].innerHTML = data[3].city + ', ' + data[3].country;
-forthIconOfHotel.children[2].innerHTML = data[4].city + ', ' + data[4].country;
