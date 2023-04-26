@@ -65,8 +65,24 @@ const data = [
   },
 ];
 
-const blocks = document.getElementById('blocks');
+const blocks = document.querySelector('.blocks');
+console.log(blocks);
 
+function AddItem (Element, HomesData) {
+  HomesData.forEach((item) => {
+    const article = document.createElement('article');
+    article.innerHTML += `<article class="block js-loves-block">
+    <img class="img-guests" src=${item.imageUrl} alt=${item.name} />
+    <h3 class="hotel-title">${item.name}</h3>
+    <p class="text-hotel">${item.city}, ${item.country}</p>
+    </article>`;
+    Element.appendChild(article);
+  });
+}
+
+AddItem(blocks, data.slice(0, 4));
+
+/*
 data.map((element, index) => {
   if (index < blocks.children.length) {
     blocks.children[index].children[0].setAttribute('src', element.imageUrl);
@@ -75,3 +91,4 @@ data.map((element, index) => {
       element.city + ', ' + element.country;
   }
 });
+*/

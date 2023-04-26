@@ -414,7 +414,7 @@
 }
 
 .block {
-  width: 296px;
+  width: 272px;
   margin-left: 8px;
   margin-right: 8px;
   font-size: 24px;
@@ -441,8 +441,8 @@
 
 .circle {
   background: #fff;
-  right: 0;
-  top: 140px;
+  right: 10px;
+  top: 2200px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -844,10 +844,6 @@
     display: none;
   }
 
-  .place-block__input {
-    margin: 0;
-  }
-
   .place-block__input--place {
     display: none;
   }
@@ -893,8 +889,10 @@
   }
 
   .place-block__input {
+    width: 100%;
     border-top: 0;
     padding-left: 8px;
+    margin-top: 0;
   }
 
   .check-in {
@@ -949,6 +947,7 @@
   .place-block__input--info-mobile {
     display: flex;
     border: none;
+    margin-top: 0;
   }
 
   .check-in__info {
@@ -1027,7 +1026,7 @@
     display: inline;
     background: #fff;
     right: 0;
-    top: 64px;
+    top: 1520px;
     width: 28px;
     height: 28px;
     border-radius: 50%;
@@ -1041,7 +1040,7 @@
     position: absolute;
     z-index: 2;
     width: 5px;
-    top: 75px;
+    top: 1530px;
     height: 5px;
     right: 12px;
     border: 2px solid #000;
