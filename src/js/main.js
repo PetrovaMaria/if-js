@@ -68,7 +68,7 @@ const data = [
 const blocks = document.querySelector('.blocks');
 console.log(blocks);
 
-function AddItem (Element, HomesData) {
+function AddItem(Element, HomesData) {
   HomesData.forEach((item) => {
     const article = document.createElement('article');
     article.innerHTML += `<article class="block js-loves-block">
