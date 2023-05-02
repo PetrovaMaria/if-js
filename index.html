@@ -116,6 +116,7 @@
                     placeholder="2 Adult -"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-adult"
                   />
                   <input
                     id="info--adult"
@@ -137,6 +138,7 @@
                     placeholder="0 Children -"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-child"
                   />
                   <input
                     id="info--children"
@@ -155,6 +157,7 @@
                     placeholder="1 Rooms"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-room"
                   />
                   <input
                     id="info--room"
@@ -169,6 +172,32 @@
               <button class="place-block__search">Search</button>
             </div>
           </form>
+          <div id="choose-form-element" style="display: none">
+            <div class="change-element">
+              <label>Adults</label>
+              <div class="count">
+                <button class="button-change" id="button1" disabled>-</button>
+                <input type="number" id="p1" value = 1 class="p" />
+                <button class="button-change" id="button2">+</button>
+              </div>
+            </div>
+            <div class="change-element ">
+              <label>Children</label>
+              <div class="count">
+                <button class="button-change" id="button3" disabled>-</button>
+                <input type="number" id="p2" value="0" class="p" />
+                <button class="button-change" id="button4">+</button>
+              </div>
+            </div>
+            <div class="change-element">
+              <label>Room</label>
+              <div class="count">
+                <button class="button-change" id="button5" disabled>-</button>
+                <input type="number" id="p3" value="1" class="p" />
+                <button class="button-change" id="button6">+</button>
+              </div>
+            </div>
+          </div>
           <div class="apps">
             <svg xmlns="http://www.w3.org/2000/svg" class="google-play">
               <use href="./src/images/sprite-svg.svg/#google-play" />
