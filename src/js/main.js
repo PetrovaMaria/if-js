@@ -169,3 +169,20 @@ jsRoom.addEventListener('click', () => {
     chooseFormElement.style.display = 'none';
   }
 });
+
+
+
+const country = document.getElementById('places');
+const searchButton = document.getElementById('search-button');
+
+
+
+searchButton.addEventListener('click', () => {
+  fetch('https://if-student-api.onrender.com/api/hotels?search=' + country.value)
+    .then(response => response.json()
+      .then(function (data){
+        console.log(data);
+      }));
+});
+
+
