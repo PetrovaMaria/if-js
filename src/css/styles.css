@@ -402,7 +402,7 @@
   background-color: #eaf0f9;
 }
 
-.blocks {
+.blocks, .results {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -450,8 +450,8 @@
 }
 
 .circle-homes-guests {
-  right: 10px;
-  top: 2200px;
+    right: 150px;
+  margin-top: 100px;
 }
 
 .circle-guests-reviews {
@@ -578,6 +578,10 @@ select {
   color: #3077c6;
 }
 
+#choose-form-element {
+  display: none;
+}
+
 .change-element {
   display: flex;
   justify-content: space-between;
@@ -646,6 +650,11 @@ select {
   margin-top: -4px;
   color: #3077c6;
   font-size: 18px;
+}
+
+.search-result {
+  display: none;
+  background-color: rgba(236, 214, 255, 0.57);
 }
 
 .country-title {
