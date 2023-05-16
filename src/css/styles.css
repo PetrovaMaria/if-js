@@ -402,7 +402,8 @@
   background-color: #eaf0f9;
 }
 
-.blocks, .results {
+.blocks,
+.results {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -450,7 +451,7 @@
 }
 
 .circle-homes-guests {
-    right: 150px;
+  right: 150px;
   margin-top: 100px;
 }
 
