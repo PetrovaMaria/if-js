@@ -1,8 +1,8 @@
 const blocks = document.querySelector('.blocks');
 const results = document.querySelector('.results');
-const search_result = document.querySelector('.search-result');
+const searchResult = document.querySelector('.Available-hotels');
 
-function AddItem(Element, HomesData) {
+function addItem(Element, HomesData) {
   HomesData.forEach((item) => {
     const article = document.createElement('article');
     article.innerHTML += `<article class="block js-loves-block">
@@ -14,18 +14,22 @@ function AddItem(Element, HomesData) {
   });
 }
 
-fetch('https://if-student-api.onrender.com/api/hotels/popular')
-  .then((response) => response.json())
-  .then((data) => AddItem(blocks, data.slice(0, 4)));
+const request = function (results, Url) {
+  fetch(
+    'https://if-student-api.onrender.com/api/hotels' + Url,
+  )
+    .then((response) => response.json())
+    .then((result) => addItem(results, result.slice(0, 4)));
+};
 
 const country = document.getElementById('places');
 const searchButton = document.getElementById('search-button');
 
+const searchUrl = '?search=' + country.value;
+const Url = '/popular';
+request(blocks, Url);
+
 searchButton.addEventListener('click', () => {
-  search_result.style.display = 'block';
-  fetch(
-    'https://if-student-api.onrender.com/api/hotels?search=' + country.value,
-  )
-    .then((response) => response.json())
-    .then((result) => AddItem(results, result.slice(0, 4)));
+  searchResult.style.display = 'block';
+  request(results, searchUrl);
 });
