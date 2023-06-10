@@ -15,9 +15,7 @@ function addItem(Element, HomesData) {
 }
 
 const request = function (results, url) {
-  fetch(
-    'https://if-student-api.onrender.com/api/hotels' + url,
-  )
+  fetch('https://if-student-api.onrender.com/api/hotels' + url)
     .then((response) => response.json())
     .then((result) => addItem(results, result.slice(0, 4)));
 };
