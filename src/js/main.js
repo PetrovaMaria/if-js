@@ -14,9 +14,9 @@ function addItem(Element, HomesData) {
   });
 }
 
-const request = function (results, Url) {
+const request = function (results, url) {
   fetch(
-    'https://if-student-api.onrender.com/api/hotels' + Url,
+    'https://if-student-api.onrender.com/api/hotels' + url,
   )
     .then((response) => response.json())
     .then((result) => addItem(results, result.slice(0, 4)));
@@ -26,8 +26,8 @@ const country = document.getElementById('places');
 const searchButton = document.getElementById('search-button');
 
 const searchUrl = '?search=' + country.value;
-const Url = '/popular';
-request(blocks, Url);
+const url = '/popular';
+request(blocks, url);
 
 searchButton.addEventListener('click', () => {
   searchResult.style.display = 'block';
