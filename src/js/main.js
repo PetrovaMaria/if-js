@@ -1,4 +1,14 @@
-import {urlAddress, fixUrl, getDataFromStorage, blocks, Url, searchUrl, results, searchResult, searchButton}  from './variable.js';
+import {
+  urlAddress,
+  fixUrl,
+  getDataFromStorage,
+  blocks,
+  Url,
+  searchUrl,
+  results,
+  searchResult,
+  searchButton,
+} from './variable.js';
 function addItem(element, homesData) {
   homesData.forEach((item) => {
     const article = document.createElement('article');
@@ -12,19 +22,16 @@ function addItem(element, homesData) {
 }
 
 const request = function (results, url) {
-  if(!sessionStorage.getItem(urlAddress)){
-  fetch(
-    fixUrl + url,
-  )
-    .then((response) => response.json())
-    .then((result) => {
-      const data = result.slice(0, 4);
+  if (!sessionStorage.getItem(urlAddress)) {
+    fetch(fixUrl + url)
+      .then((response) => response.json())
+      .then((result) => {
+        const data = result.slice(0, 4);
         sessionStorage.setItem(urlAddress, JSON.stringify(data));
         console.log(JSON.parse(getDataFromStorage));
         addItem(results, JSON.parse(getDataFromStorage));
-    });
-  }
-  else{
+      });
+  } else {
     addItem(results, JSON.parse(getDataFromStorage));
   }
 };
@@ -35,4 +42,3 @@ searchButton.addEventListener('click', () => {
   searchResult.style.display = 'block';
   request(results, searchUrl);
 });
-
