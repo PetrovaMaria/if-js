@@ -81,106 +81,99 @@ function AddItem(Element, HomesData) {
 
 AddItem(blocks, data.slice(0, 4));
 
-const adultSubtraction = document.getElementById("adult-subtraction");
-const adultSumma = document.getElementById("adult-summa");
-const childSubtraction = document.getElementById("child-subtraction");
-const childSumma = document.getElementById("child-summa");
-const roomSubtraction = document.getElementById("room-subtraction");
-const roomSumma = document.getElementById("room-summa");
-const jsAdult = document.getElementById("js-adult");
-const jsChild = document.getElementById("js-child");
-const jsRoom = document.getElementById("js-room");
-const adultLink = document.getElementById("adult-link");
-const childLink = document.getElementById("child-link");
-const roomLink = document.getElementById("room-link");
-const chooseFormElement = document.getElementById("choose-form-element");
-const info = document.getElementById("info-block");
+const adultSubtraction = document.getElementById('adult-subtraction');
+const adultSumma = document.getElementById('adult-summa');
+const childSubtraction = document.getElementById('child-subtraction');
+const childSumma = document.getElementById('child-summa');
+const roomSubtraction = document.getElementById('room-subtraction');
+const roomSumma = document.getElementById('room-summa');
+const jsAdult = document.getElementById('js-adult');
+const jsChild = document.getElementById('js-child');
+const jsRoom = document.getElementById('js-room');
+const adultLink = document.getElementById('adult-link');
+const childLink = document.getElementById('child-link');
+const roomLink = document.getElementById('room-link');
+const chooseFormElement = document.getElementById('choose-form-element');
+const info = document.getElementById('info-block');
 
-let countAdult =adultLink.value = 1;
-let countChild =childLink.value = 0;
-let countRoom =roomLink.value = 1;
-
+let countAdult = (adultLink.value = 1);
+let countChild = (childLink.value = 0);
+let countRoom = (roomLink.value = 1);
 
 chooseFormElement.addEventListener('click', (event) => {
-  if(!event.target.nextElementSibling){
-      if (event.target.previousElementSibling === adultLink){
-        if(countAdult < 30 ){
-          adultSubtraction.removeAttribute("disabled");
-          adultLink.value = countAdult + 1;
-          jsAdult.value = `${adultLink.value} Adult`;
-          countAdult++;
-        }
-        else {
-          event.target.setAttribute("disabled", "");
-        }
+  if (!event.target.nextElementSibling) {
+    if (event.target.previousElementSibling === adultLink) {
+      if (countAdult < 30) {
+        adultSubtraction.removeAttribute('disabled');
+        adultLink.value = countAdult + 1;
+        jsAdult.value = `${adultLink.value} Adult`;
+        countAdult++;
+      } else {
+        event.target.setAttribute('disabled', '');
       }
-      else if (event.target.previousElementSibling === childLink){
-        if(countChild < 10 && countChild === 0){
-          childSubtraction.removeAttribute("disabled");
-          childLink.value = countChild + 1;
-          jsChild.value = `${childLink.value} Children`;
-          countChild++;
-          const newp = document.createElement("p");
-          const newContent = document.createTextNode("What is the age of the child you’re travelling with?");
-          newp.appendChild(newContent);
-          chooseFormElement.appendChild(newp);
-          const newSelect = document.createElement("select");
-          chooseFormElement.appendChild(newSelect);
-          for( let i=0; i < 18 ; i++){
-            const newOption = document.createElement("option");
-            const newOptionContent = document.createTextNode(`${i} years old`);
-            newOption.appendChild(newOptionContent);
-            newSelect.appendChild(newOption);
-          }
+    } else if (event.target.previousElementSibling === childLink) {
+      if (countChild < 10 && countChild === 0) {
+        childSubtraction.removeAttribute('disabled');
+        childLink.value = countChild + 1;
+        jsChild.value = `${childLink.value} Children`;
+        countChild++;
+        const newp = document.createElement('p');
+        const newContent = document.createTextNode(
+          'What is the age of the child you’re travelling with?',
+        );
+        newp.appendChild(newContent);
+        chooseFormElement.appendChild(newp);
+        const newSelect = document.createElement('select');
+        chooseFormElement.appendChild(newSelect);
+        for (let i = 0; i < 18; i++) {
+          const newOption = document.createElement('option');
+          const newOptionContent = document.createTextNode(`${i} years old`);
+          newOption.appendChild(newOptionContent);
+          newSelect.appendChild(newOption);
         }
-        else
-        if (countChild < 10){
-          childSubtraction.removeAttribute("disabled");
-          childLink.value = countChild + 1;
-          jsChild.value = `${childLink.value} Children`;
-          countChild++;
-          const newSelect = document.createElement("select");
-          chooseFormElement.appendChild(newSelect);
-          for( let i=0; i < 18 ; i++){
-            const newOption = document.createElement("option");
-            const newOptionContent = document.createTextNode(`${i} years old`);
-            newOption.appendChild(newOptionContent);
-            newSelect.appendChild(newOption);
-          }
+      } else if (countChild < 10) {
+        childSubtraction.removeAttribute('disabled');
+        childLink.value = countChild + 1;
+        jsChild.value = `${childLink.value} Children`;
+        countChild++;
+        const newSelect = document.createElement('select');
+        chooseFormElement.appendChild(newSelect);
+        for (let i = 0; i < 18; i++) {
+          const newOption = document.createElement('option');
+          const newOptionContent = document.createTextNode(`${i} years old`);
+          newOption.appendChild(newOptionContent);
+          newSelect.appendChild(newOption);
         }
-        else {
-          event.target.setAttribute("disabled", "");
-        }
+      } else {
+        event.target.setAttribute('disabled', '');
       }
-      else{
-        if(countRoom < 30 ){
-          roomSubtraction.removeAttribute("disabled");
-          roomLink.value = countRoom + 1;
-          jsRoom.value = `${roomLink.value} Room`;
-          countRoom++;
-        }
-        else{
-          event.target.setAttribute("disabled", "");
-        }
+    } else {
+      if (countRoom < 30) {
+        roomSubtraction.removeAttribute('disabled');
+        roomLink.value = countRoom + 1;
+        jsRoom.value = `${roomLink.value} Room`;
+        countRoom++;
+      } else {
+        event.target.setAttribute('disabled', '');
       }
+    }
   }
 });
 
 adultSubtraction.addEventListener('click', () => {
-  if(countAdult > 1 ){
-    adultSumma.removeAttribute("disabled");
+  if (countAdult > 1) {
+    adultSumma.removeAttribute('disabled');
     adultLink.value = countAdult - 1;
     jsAdult.value = `${adultLink.value} Adult`;
     countAdult--;
-  }
-  else{
-    adultSubtraction.setAttribute("disabled", "");
+  } else {
+    adultSubtraction.setAttribute('disabled', '');
   }
 });
 
 childSubtraction.addEventListener('click', () => {
-  if(countChild > 0 && countChild === 1){
-    childSumma.removeAttribute("disabled");
+  if (countChild > 0 && countChild === 1) {
+    childSumma.removeAttribute('disabled');
     childLink.value = countChild - 1;
     jsChild.value = `${childLink.value} Children`;
     countChild--;
@@ -189,37 +182,33 @@ childSubtraction.addEventListener('click', () => {
     const parent = select.parentNode;
     parent.removeChild(select);
     parent.removeChild(p);
-  }
-  else   if(countChild > 0){
-    childSumma.removeAttribute("disabled");
+  } else if (countChild > 0) {
+    childSumma.removeAttribute('disabled');
     childLink.value = countChild - 1;
     jsChild.value = `${childLink.value} Children`;
     countChild--;
     const select = document.querySelector('select');
     const parent = select.parentNode;
     parent.removeChild(select);
-  }
-  else  {
-    childSubtraction.setAttribute("disabled", "");
+  } else {
+    childSubtraction.setAttribute('disabled', '');
   }
 });
 
 roomSubtraction.addEventListener('click', () => {
-  if(countRoom > 1 ){
-    roomSumma.removeAttribute("disabled");
+  if (countRoom > 1) {
+    roomSumma.removeAttribute('disabled');
     roomLink.value = countRoom - 1;
     jsRoom.value = `${roomLink.value} Room`;
     countRoom--;
-  }
-  else{
-    roomSubtraction.setAttribute("disabled", "");
+  } else {
+    roomSubtraction.setAttribute('disabled', '');
   }
 });
 info.addEventListener('click', () => {
-  if(chooseFormElement.style.display === "none"){
-    chooseFormElement.style.display = "block";
-  }
-  else{
-    chooseFormElement.style.display = "none";
+  if (chooseFormElement.style.display === 'none') {
+    chooseFormElement.style.display = 'block';
+  } else {
+    chooseFormElement.style.display = 'none';
   }
 });
