@@ -103,7 +103,7 @@
                 />
               </div>
             </div>
-            <div class="info-block col-sm-6">
+            <div class="info-block col-sm-6" id="info-block">
               <div class="col-sm-2 check-in check-in__info">
                 <div class="indent">
                   <label
@@ -172,29 +172,29 @@
               <button class="place-block__search">Search</button>
             </div>
           </form>
-          <div id="choose-form-element" style="display: none">
+          <div id="choose-form-element">
             <div class="change-element">
               <label>Adults</label>
               <div class="count">
-                <button class="button-change" id="button1" disabled>-</button>
-                <input type="number" id="p1" value = 1 class="p" />
-                <button class="button-change" id="button2">+</button>
+                <button class="button-change" id="adult-subtraction" disabled>-</button>
+                <input type="number" id="adult-link" class="p" />
+                <button class="button-change" id="adult-summa">+</button>
               </div>
             </div>
             <div class="change-element ">
               <label>Children</label>
               <div class="count">
-                <button class="button-change" id="button3" disabled>-</button>
-                <input type="number" id="p2" value="0" class="p" />
-                <button class="button-change" id="button4">+</button>
+                <button class="button-change" id="child-subtraction" disabled>-</button>
+                <input type="number" id="child-link" class="p" />
+                <button class="button-change" id="child-summa">+</button>
               </div>
             </div>
             <div class="change-element">
               <label>Room</label>
               <div class="count">
-                <button class="button-change" id="button5" disabled>-</button>
-                <input type="number" id="p3" value="1" class="p" />
-                <button class="button-change" id="button6">+</button>
+                <button class="button-change" id="room-subtraction" disabled>-</button>
+                <input type="number" id="room-link" class="p" />
+                <button class="button-change" id="room-summa">+</button>
               </div>
             </div>
           </div>
@@ -278,13 +278,13 @@
           <div class="col-lg-3 block">
             <img
               class="img-guests"
-              src="./src/images/beach.svg"
+              src="./src/images/beach.png"
               alt="maldives"
             />
             <h3 class="hotel-title">Maldives</h3>
           </div>
           <div class="col-lg-3 col-sm-3 block">
-            <img class="img-guests" src="./src/images/sea.svg" alt="Spain" />
+            <img class="img-guests" src="./src/images/sea.png" alt="Spain" />
             <h3 class="hotel-title">Spain</h3>
             <div class="circle-mobile"></div>
             <div class="arrow-right-mobile"></div>
@@ -292,7 +292,7 @@
           <div class="col-lg-3 col-sm-3 block">
             <img
               class="img-guests"
-              src="./src/images/mountains.svg"
+              src="./src/images/mountains.png"
               alt="Norway"
             />
             <h3 class="hotel-title">Norway</h3>
@@ -300,7 +300,7 @@
           <div class="col-lg-3 col-sm-3 block last-block">
             <img
               class="img-guests"
-              src="./src/images/Island.svg"
+              src="./src/images/Island.png"
               alt="Island"
             />
             <h3 class="hotel-title island">Island</h3>
@@ -343,7 +343,7 @@
             <div class="col-lg-4 col-sm-6 guest-reviews-block">
               <img
                 class="house-image"
-                src="./src/images/image.svg"
+                src="./src/images/image.png"
                 alt="house"
               />
               <div class="black-block">
@@ -386,7 +386,7 @@
             <div
               class="col-lg-4 guest-reviews-block second__guest-reviews-block"
             >
-              <img class="house-image" src="./src/images/bed.svg" alt="house" />
+              <img class="house-image" src="./src/images/bed.png" alt="house" />
               <div class="black-block">
                 <p class="down-title">From 40 USD</p>
               </div>
@@ -430,7 +430,7 @@
             >
               <img
                 class="house-image"
-                src="./src/images/walls.svg"
+                src="./src/images/walls.png"
                 alt="house"
               />
               <div class="circle circle-guests-reviews">

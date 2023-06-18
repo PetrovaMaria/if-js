@@ -552,7 +552,9 @@
   box-sizing: border-box;
   font-size: 16px;
   margin: 12px 15% 0 auto;
+  display: none;
 }
+
 
 .p {
   width: 48px;
@@ -735,6 +737,12 @@ select {
 
 .install {
   display: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
