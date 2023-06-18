@@ -1,44 +1,35 @@
-import {
-  urlAddress,
-  fixUrl,
-  getDataFromStorage,
-  blocks,
-  Url,
-  searchUrl,
-  results,
-  searchResult,
-  searchButton,
-} from './variable.js';
-function addItem(element, homesData) {
-  homesData.forEach((item) => {
-    const article = document.createElement('article');
-    article.innerHTML += `<article class="block js-loves-block">
-    <img class="img-guests" src=${item.imageUrl} alt=${item.name} />
-    <h3 class="hotel-title">${item.name}</h3>
-    <p class="text-hotel">${item.city}, ${item.country}</p>
-    </article>`;
-    element.appendChild(article);
-  });
-}
+const form = document.getElementById('form');
 
-const request = function (results, url) {
-  if (!sessionStorage.getItem(urlAddress)) {
-    fetch(fixUrl + url)
-      .then((response) => response.json())
-      .then((result) => {
-        const data = result.slice(0, 4);
-        sessionStorage.setItem(urlAddress, JSON.stringify(data));
-        console.log(JSON.parse(getDataFromStorage));
-        addItem(results, JSON.parse(getDataFromStorage));
-      });
-  } else {
-    addItem(results, JSON.parse(getDataFromStorage));
-  }
-};
+form.addEventListener('submit', async event=> {
+  event.preventDefault();
+  const body = new FormData (form);
 
-request(blocks, Url);
+  const name = body.get('name');
 
-searchButton.addEventListener('click', () => {
-  searchResult.style.display = 'block';
-  request(results, searchUrl);
+  const json = JSON.stringify({name});
+
+  const blob = new Blob (
+    [json],
+    {type: 'application/json'},
+  );
+
+  console.log(blob);
+  console.log(body.get('json'));
+
+  const fetchOptions = {
+    method: 'POST',
+    body,
+  };
+
+  const res= await fetch(' https://if-student-api.onrender.com/api/file', fetchOptions)
+    .then(response=> {
+      if(!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(result => result)
+    .catch(error => console.log(error.message));
+
+  console.log(res);
 });
