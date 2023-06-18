@@ -116,6 +116,7 @@
                     placeholder="2 Adult -"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-adult"
                   />
                   <input
                     id="info--adult"
@@ -137,6 +138,7 @@
                     placeholder="0 Children -"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-child"
                   />
                   <input
                     id="info--children"
@@ -155,6 +157,7 @@
                     placeholder="1 Rooms"
                     type="text"
                     class="place-block__input--info-desktop place-block__input--info place-block__input"
+                    id="js-room"
                   />
                   <input
                     id="info--room"
@@ -166,9 +169,68 @@
               </div>
             </div>
             <div class="button">
-              <button class="place-block__search">Search</button>
+              <button
+                id="search-button"
+                class="place-block__search"
+                type="button"
+              >
+                Search
+              </button>
             </div>
           </form>
+          <div id="choose-form-element">
+            <div class="change-element">
+              <label>Adults</label>
+              <div class="count">
+                <button
+                  value="-"
+                  class="button-change button"
+                  id="'adult-subtraction"
+                  disabled
+                >
+                  -
+                </button>
+                <input type="number" id="p1" class="p" />
+                <button value="+" class="button-change" id="'adult-summa">
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="change-element">
+              <label>Children</label>
+              <div class="count">
+                <button
+                  value="-"
+                  class="button-change button"
+                  id="child-subtraction"
+                  disabled
+                >
+                  -
+                </button>
+                <input type="number" id="p2" class="p" />
+                <button value="+" class="button-change" id="child-summa">
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="change-element">
+              <label>Room</label>
+              <div class="count">
+                <button
+                  value="-"
+                  class="button-change button"
+                  id="room-subtraction"
+                  disabled
+                >
+                  -
+                </button>
+                <input type="number" id="p3" class="p" />
+                <button value="+" class="button-change" id="room-summa">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
           <div class="apps">
             <svg xmlns="http://www.w3.org/2000/svg" class="google-play">
               <use href="./src/images/sprite-svg.svg/#google-play" />
@@ -180,6 +242,18 @@
         </div>
       </div>
     </div>
+    <section class="Available-hotels">
+      <div class="container">
+        <h2 class="title">Available hotels</h2>
+        <div class="results">
+          <div class="circle-mobile"></div>
+          <div class="arrow-right-mobile"></div>
+          <div class="circle circle-homes-guests">
+            <div class="arrow-right"></div>
+          </div>
+        </div>
+      </div>
+    </section>
     <div class="container">
       <h2 class="title title__line">What do we offer</h2>
       <div class="main-block">
@@ -247,15 +321,11 @@
         </div>
         <div class="blocks">
           <div class="col-lg-3 block">
-            <img
-              class="img-guests"
-              src="./src/images/beach.svg"
-              alt="maldives"
-            />
+            <img class="img-guests" src="src/images/beach.png" alt="maldives" />
             <h3 class="hotel-title">Maldives</h3>
           </div>
           <div class="col-lg-3 col-sm-3 block">
-            <img class="img-guests" src="./src/images/sea.svg" alt="Spain" />
+            <img class="img-guests" src="src/images/sea.png" alt="Spain" />
             <h3 class="hotel-title">Spain</h3>
             <div class="circle-mobile"></div>
             <div class="arrow-right-mobile"></div>
@@ -263,17 +333,13 @@
           <div class="col-lg-3 col-sm-3 block">
             <img
               class="img-guests"
-              src="./src/images/mountains.svg"
+              src="src/images/mountains.png"
               alt="Norway"
             />
             <h3 class="hotel-title">Norway</h3>
           </div>
           <div class="col-lg-3 col-sm-3 block last-block">
-            <img
-              class="img-guests"
-              src="./src/images/Island.svg"
-              alt="Island"
-            />
+            <img class="img-guests" src="src/images/Island.png" alt="Island" />
             <h3 class="hotel-title island">Island</h3>
             <div class="circle-bottom">
               <div class="arrow-bottom"></div>
@@ -295,7 +361,7 @@
               >
                 <use href="./src/images/sprite-svg.svg/#left" />
               </svg>
-              <img class="user-logo" src="./src/images/user.svg" alt="user" />
+              <img class="user-logo" src="src/images/user.svg" alt="user" />
               <div class="text-sign-up">
                 <p class="title-sign-up">
                   Sign up and get 20% off your first booking
@@ -312,11 +378,7 @@
           <p class="title">Guests reviews</p>
           <div class="guest-reviews-blocks">
             <div class="col-lg-4 col-sm-6 guest-reviews-block">
-              <img
-                class="house-image"
-                src="./src/images/image.svg"
-                alt="house"
-              />
+              <img class="house-image" src="src/images/image.png" alt="house" />
               <div class="black-block">
                 <p class="down-title">From 250 USD</p>
               </div>
@@ -357,7 +419,7 @@
             <div
               class="col-lg-4 guest-reviews-block second__guest-reviews-block"
             >
-              <img class="house-image" src="./src/images/bed.svg" alt="house" />
+              <img class="house-image" src="src/images/bed.png" alt="house" />
               <div class="black-block">
                 <p class="down-title">From 40 USD</p>
               </div>
@@ -399,11 +461,7 @@
             <div
               class="col-lg-4 guest-reviews-block third__guest-reviews-block"
             >
-              <img
-                class="house-image"
-                src="./src/images/walls.svg"
-                alt="house"
-              />
+              <img class="house-image" src="src/images/walls.png" alt="house" />
               <div class="circle circle-guests-reviews">
                 <div class="arrow-right"></div>
               </div>
