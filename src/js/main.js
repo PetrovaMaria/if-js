@@ -81,12 +81,6 @@ function AddItem(Element, HomesData) {
 
 AddItem(blocks, data.slice(0, 4));
 
-const adultSubtraction = document.getElementById('adult-subtraction');
-const adultSumma = document.getElementById('adult-summa');
-const childSubtraction = document.getElementById('child-subtraction');
-const childSumma = document.getElementById('child-summa');
-const roomSubtraction = document.getElementById('room-subtraction');
-const roomSumma = document.getElementById('room-summa');
 const jsAdult = document.getElementById('js-adult');
 const jsChild = document.getElementById('js-child');
 const jsRoom = document.getElementById('js-room');
@@ -96,115 +90,143 @@ const roomLink = document.getElementById('room-link');
 const chooseFormElement = document.getElementById('choose-form-element');
 const info = document.getElementById('info-block');
 
-let countAdult = (adultLink.value = 1);
-let countChild = (childLink.value = 0);
-let countRoom = (roomLink.value = 1);
+adultLink.value = 1;
+childLink.value = 0;
+roomLink.value = 1;
+
+const fieldFunction = function (item, field) {
+  if (field === 'adult') {
+    jsAdult.value = `${item} Adult`;
+  } else if (field === 'child') {
+    jsChild.value = `${item} Child`;
+  } else {
+    jsRoom.value = `${item} Room`;
+  }
+};
 
 chooseFormElement.addEventListener('click', (event) => {
-  if (!event.target.nextElementSibling) {
-    if (event.target.previousElementSibling === adultLink) {
-      if (countAdult < 30) {
-        adultSubtraction.removeAttribute('disabled');
-        adultLink.value = countAdult + 1;
-        jsAdult.value = `${adultLink.value} Adult`;
-        countAdult++;
-      } else {
-        event.target.setAttribute('disabled', '');
-      }
-    } else if (event.target.previousElementSibling === childLink) {
-      if (countChild < 10 && countChild === 0) {
-        childSubtraction.removeAttribute('disabled');
-        childLink.value = countChild + 1;
-        jsChild.value = `${childLink.value} Children`;
-        countChild++;
-        const newp = document.createElement('p');
-        const newContent = document.createTextNode(
-          'What is the age of the child you’re travelling with?',
-        );
-        newp.appendChild(newContent);
-        chooseFormElement.appendChild(newp);
-        const newSelect = document.createElement('select');
-        chooseFormElement.appendChild(newSelect);
-        for (let i = 0; i < 18; i++) {
-          const newOption = document.createElement('option');
-          const newOptionContent = document.createTextNode(`${i} years old`);
-          newOption.appendChild(newOptionContent);
-          newSelect.appendChild(newOption);
-        }
-      } else if (countChild < 10) {
-        childSubtraction.removeAttribute('disabled');
-        childLink.value = countChild + 1;
-        jsChild.value = `${childLink.value} Children`;
-        countChild++;
-        const newSelect = document.createElement('select');
-        chooseFormElement.appendChild(newSelect);
-        for (let i = 0; i < 18; i++) {
-          const newOption = document.createElement('option');
-          const newOptionContent = document.createTextNode(`${i} years old`);
-          newOption.appendChild(newOptionContent);
-          newSelect.appendChild(newOption);
-        }
-      } else {
-        event.target.setAttribute('disabled', '');
-      }
+  const direction = event.target.dataset.direction;
+  const field = event.target.dataset.field;
+  const min = event.target.dataset.min;
+  const max = event.target.dataset.max;
+
+  if (
+    direction === '+' &&
+    Number(event.target.previousElementSibling.value) === Number(min)
+  ) {
+    const currentValue =
+      Number(event.target.parentElement.querySelector('[class="p"]').value) + 1;
+    event.target.previousElementSibling.value = currentValue;
+    event.target.parentElement.firstElementChild.disabled = false;
+    fieldFunction(currentValue, field);
+  } else {
+    if (
+      direction === '+' &&
+      Number(event.target.previousElementSibling.value) === Number(max) - 1
+    ) {
+      const currentValue =
+        Number(event.target.parentElement.querySelector('[class="p"]').value) +
+        1;
+      event.target.previousElementSibling.value = currentValue;
+      event.target.disabled = true;
+      fieldFunction(currentValue, field);
     } else {
-      if (countRoom < 30) {
-        roomSubtraction.removeAttribute('disabled');
-        roomLink.value = countRoom + 1;
-        jsRoom.value = `${roomLink.value} Room`;
-        countRoom++;
+      if (direction === '+') {
+        const currentValue =
+          Number(
+            event.target.parentElement.querySelector('[class="p"]').value,
+          ) + 1;
+        event.target.previousElementSibling.value = currentValue;
+        fieldFunction(currentValue, field);
+      }
+    }
+
+    if (
+      direction === '-' &&
+      Number(event.target.nextElementSibling.value) === Number(max)
+    ) {
+      const currentValue =
+        Number(event.target.parentElement.querySelector('[class="p"]').value) -
+        1;
+      event.target.nextElementSibling.value = currentValue;
+      event.target.parentElement.lastElementChild.disabled = false;
+      fieldFunction(currentValue, field);
+    } else {
+      if (
+        direction === '-' &&
+        Number(event.target.nextElementSibling.value) === Number(min) + 1
+      ) {
+        const currentValue =
+          Number(
+            event.target.parentElement.querySelector('[class="p"]').value,
+          ) - 1;
+        event.target.nextElementSibling.value = currentValue;
+        event.target.disabled = true;
+        fieldFunction(currentValue, field);
       } else {
-        event.target.setAttribute('disabled', '');
+        if (direction === '-') {
+          const currentValue =
+            Number(
+              event.target.parentElement.querySelector('[class="p"]').value,
+            ) - 1;
+          event.target.nextElementSibling.value = currentValue;
+          fieldFunction(currentValue, field);
+        }
       }
     }
   }
-});
-
-adultSubtraction.addEventListener('click', () => {
-  if (countAdult > 1) {
-    adultSumma.removeAttribute('disabled');
-    adultLink.value = countAdult - 1;
-    jsAdult.value = `${adultLink.value} Adult`;
-    countAdult--;
-  } else {
-    adultSubtraction.setAttribute('disabled', '');
-  }
-});
-
-childSubtraction.addEventListener('click', () => {
-  if (countChild > 0 && countChild === 1) {
-    childSumma.removeAttribute('disabled');
-    childLink.value = countChild - 1;
-    jsChild.value = `${childLink.value} Children`;
-    countChild--;
+  if (field === 'child' && direction === '+') {
+    if (
+      Number(event.target.parentElement.querySelector('[class="p"]').value) ===
+      1
+    ) {
+      const newp = document.createElement('p');
+      const newContent = document.createTextNode(
+        'What is the age of the child you’re travelling with?',
+      );
+      newp.appendChild(newContent);
+      chooseFormElement.appendChild(newp);
+      const newSelect = document.createElement('select');
+      chooseFormElement.appendChild(newSelect);
+      for (let i = 0; i < 18; i++) {
+        const newOption = document.createElement('option');
+        const newOptionContent = document.createTextNode(`${i} years old`);
+        newOption.appendChild(newOptionContent);
+        newSelect.appendChild(newOption);
+      }
+    } else if (
+      Number(event.target.parentElement.querySelector('[class="p"]').value) <=
+      10
+    ) {
+      const newSelect = document.createElement('select');
+      chooseFormElement.appendChild(newSelect);
+      for (let i = 0; i < 18; i++) {
+        const newOption = document.createElement('option');
+        const newOptionContent = document.createTextNode(`${i} years old`);
+        newOption.appendChild(newOptionContent);
+        newSelect.appendChild(newOption);
+      }
+    }
+  } else if (
+    field === 'child' &&
+    direction === '-' &&
+    Number(event.target.parentElement.querySelector('[class="p"]').value) === 0
+  ) {
     const select = document.querySelector('select');
     const p = document.querySelector('p');
     const parent = select.parentNode;
     parent.removeChild(select);
     parent.removeChild(p);
-  } else if (countChild > 0) {
-    childSumma.removeAttribute('disabled');
-    childLink.value = countChild - 1;
-    jsChild.value = `${childLink.value} Children`;
-    countChild--;
+  } else if (
+    field === 'child' &&
+    Number(event.target.parentElement.querySelector('[class="p"]').value) <= 10
+  ) {
     const select = document.querySelector('select');
     const parent = select.parentNode;
     parent.removeChild(select);
-  } else {
-    childSubtraction.setAttribute('disabled', '');
   }
 });
 
-roomSubtraction.addEventListener('click', () => {
-  if (countRoom > 1) {
-    roomSumma.removeAttribute('disabled');
-    roomLink.value = countRoom - 1;
-    jsRoom.value = `${roomLink.value} Room`;
-    countRoom--;
-  } else {
-    roomSubtraction.setAttribute('disabled', '');
-  }
-});
 info.addEventListener('click', () => {
   if (chooseFormElement.style.display === 'none') {
     chooseFormElement.style.display = 'block';

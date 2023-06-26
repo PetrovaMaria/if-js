@@ -176,31 +176,82 @@
             <div class="change-element">
               <label>Adults</label>
               <div class="count">
-                <button class="button-change" id="adult-subtraction" disabled>
+                <button
+                  class="button-change"
+                  id="adult-subtraction"
+                  data-field="adult"
+                  data-direction="-"
+                  data-min="1"
+                  data-max="30"
+                  disabled
+                >
                   -
                 </button>
                 <input type="number" id="adult-link" class="p" />
-                <button class="button-change" id="adult-summa">+</button>
+                <button
+                  class="button-change"
+                  id="adult-summa"
+                  data-field="adult"
+                  data-direction="+"
+                  data-min="1"
+                  data-max="30"
+                >
+                  +
+                </button>
               </div>
             </div>
             <div class="change-element">
               <label>Children</label>
               <div class="count">
-                <button class="button-change" id="child-subtraction" disabled>
+                <button
+                  class="button-change"
+                  id="child-subtraction"
+                  data-field="child"
+                  data-direction="-"
+                  data-min="0"
+                  data-max="10"
+                  disabled
+                >
                   -
                 </button>
                 <input type="number" id="child-link" class="p" />
-                <button class="button-change" id="child-summa">+</button>
+                <button
+                  class="button-change"
+                  id="child-summa"
+                  data-field="child"
+                  data-direction="+"
+                  data-min="0"
+                  data-max="10"
+                >
+                  +
+                </button>
               </div>
             </div>
             <div class="change-element">
               <label>Room</label>
               <div class="count">
-                <button class="button-change" id="room-subtraction" disabled>
+                <button
+                  class="button-change"
+                  id="room-subtraction"
+                  data-field="room"
+                  data-direction="-"
+                  data-min="1"
+                  data-max="30"
+                  disabled
+                >
                   -
                 </button>
                 <input type="number" id="room-link" class="p" />
-                <button class="button-change" id="room-summa">+</button>
+                <button
+                  class="button-change"
+                  id="room-summa"
+                  data-field="room"
+                  data-direction="+"
+                  data-min="1"
+                  data-max="30"
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
