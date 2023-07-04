@@ -66,7 +66,6 @@ const data = [
 ];
 
 const blocks = document.querySelector('.blocks');
-console.log(blocks);
 
 function AddItem(Element, HomesData) {
   HomesData.forEach((item) => {
@@ -82,13 +81,156 @@ function AddItem(Element, HomesData) {
 
 AddItem(blocks, data.slice(0, 4));
 
-/*
-data.map((element, index) => {
-  if (index < blocks.children.length) {
-    blocks.children[index].children[0].setAttribute('src', element.imageUrl);
-    blocks.children[index].children[1].innerHTML = element.name;
-    blocks.children[index].children[2].innerHTML =
-      element.city + ', ' + element.country;
+const jsAdult = document.getElementById('js-adult');
+const jsChild = document.getElementById('js-child');
+const jsRoom = document.getElementById('js-room');
+const adultLink = document.getElementById('adult-link');
+const childLink = document.getElementById('child-link');
+const roomLink = document.getElementById('room-link');
+const chooseFormElement = document.getElementById('choose-form-element');
+const info = document.getElementById('info-block');
+
+adultLink.value = 1;
+childLink.value = 0;
+roomLink.value = 1;
+
+const fieldFunction = function (item, field) {
+  if (field === 'adult') {
+    jsAdult.value = `${item} Adult`;
+  } else if (field === 'child') {
+    jsChild.value = `${item} Child`;
+  } else {
+    jsRoom.value = `${item} Room`;
+  }
+};
+
+chooseFormElement.addEventListener('click', (event) => {
+  const direction = event.target.dataset.direction;
+  const field = event.target.dataset.field;
+  const min = event.target.dataset.min;
+  const max = event.target.dataset.max;
+
+  if (
+    direction === '+' &&
+    Number(event.target.previousElementSibling.value) === Number(min)
+  ) {
+    const currentValue =
+      Number(event.target.parentElement.querySelector('[class="p"]').value) + 1;
+    event.target.previousElementSibling.value = currentValue;
+    event.target.parentElement.firstElementChild.disabled = false;
+    fieldFunction(currentValue, field);
+  } else {
+    if (
+      direction === '+' &&
+      Number(event.target.previousElementSibling.value) === Number(max) - 1
+    ) {
+      const currentValue =
+        Number(event.target.parentElement.querySelector('[class="p"]').value) +
+        1;
+      event.target.previousElementSibling.value = currentValue;
+      event.target.disabled = true;
+      fieldFunction(currentValue, field);
+    } else {
+      if (direction === '+') {
+        const currentValue =
+          Number(
+            event.target.parentElement.querySelector('[class="p"]').value,
+          ) + 1;
+        event.target.previousElementSibling.value = currentValue;
+        fieldFunction(currentValue, field);
+      }
+    }
+
+    if (
+      direction === '-' &&
+      Number(event.target.nextElementSibling.value) === Number(max)
+    ) {
+      const currentValue =
+        Number(event.target.parentElement.querySelector('[class="p"]').value) -
+        1;
+      event.target.nextElementSibling.value = currentValue;
+      event.target.parentElement.lastElementChild.disabled = false;
+      fieldFunction(currentValue, field);
+    } else {
+      if (
+        direction === '-' &&
+        Number(event.target.nextElementSibling.value) === Number(min) + 1
+      ) {
+        const currentValue =
+          Number(
+            event.target.parentElement.querySelector('[class="p"]').value,
+          ) - 1;
+        event.target.nextElementSibling.value = currentValue;
+        event.target.disabled = true;
+        fieldFunction(currentValue, field);
+      } else {
+        if (direction === '-') {
+          const currentValue =
+            Number(
+              event.target.parentElement.querySelector('[class="p"]').value,
+            ) - 1;
+          event.target.nextElementSibling.value = currentValue;
+          fieldFunction(currentValue, field);
+        }
+      }
+    }
+  }
+  if (field === 'child' && direction === '+') {
+    if (
+      Number(event.target.parentElement.querySelector('[class="p"]').value) ===
+      1
+    ) {
+      const newp = document.createElement('p');
+      const newContent = document.createTextNode(
+        'What is the age of the child you’re travelling with?',
+      );
+      newp.appendChild(newContent);
+      chooseFormElement.appendChild(newp);
+      const newSelect = document.createElement('select');
+      chooseFormElement.appendChild(newSelect);
+      for (let i = 0; i < 18; i++) {
+        const newOption = document.createElement('option');
+        const newOptionContent = document.createTextNode(`${i} years old`);
+        newOption.appendChild(newOptionContent);
+        newSelect.appendChild(newOption);
+      }
+    } else if (
+      Number(event.target.parentElement.querySelector('[class="p"]').value) <=
+      10
+    ) {
+      const newSelect = document.createElement('select');
+      chooseFormElement.appendChild(newSelect);
+      for (let i = 0; i < 18; i++) {
+        const newOption = document.createElement('option');
+        const newOptionContent = document.createTextNode(`${i} years old`);
+        newOption.appendChild(newOptionContent);
+        newSelect.appendChild(newOption);
+      }
+    }
+  } else if (
+    field === 'child' &&
+    direction === '-' &&
+    Number(event.target.parentElement.querySelector('[class="p"]').value) === 0
+  ) {
+    const select = document.querySelector('select');
+    const p = document.querySelector('p');
+    const parent = select.parentNode;
+    parent.removeChild(select);
+    parent.removeChild(p);
+  } else if (
+    field === 'child' &&
+    Number(event.target.parentElement.querySelector('[class="p"]').value) <= 10
+  ) {
+    const select = document.querySelector('select');
+    const parent = select.parentNode;
+    parent.removeChild(select);
   }
 });
-*/
+
+info.addEventListener('click', () => {
+  if (chooseFormElement.style.display === 'none') {
+    chooseFormElement.style.display = 'block';
+  } else {
+    chooseFormElement.style.display = 'none';
+  }
+});
